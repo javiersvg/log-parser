@@ -1,0 +1,3 @@
+include 'mysql-log-parser-core'
+include 'mysql-log-parser-command-line'
+include 'mysql-log-parser-application'

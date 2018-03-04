@@ -1,0 +1,18 @@
+group 'com.javiersvg.mysqllogparser'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':mysql-log-parser-core')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+mainClassName = 'com.javiersvg.mysqllogparser.application.MySqlLogParserApplication'
