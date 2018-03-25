@@ -1,12 +1,12 @@
-package com.javiersvg.mysqllogparser.commandline;
+package com.javiersvg.logparser.commandline;
 
-import com.javiersvg.mysqllogparser.MySqlLogParser;
+import com.javiersvg.logparser.LogParser;
 
-public class MySqlLogParserCommandLineRunner {
+public class LogParserCommandLineRunner {
     public static void main(String... args) {
         Arguments arguments = new Arguments(args);
         arguments.validate("startDate", "duration", "threshold");
-        new MySqlLogParser(arguments.dateArgument("startDate"),
+        new LogParser(arguments.dateArgument("startDate"),
                 arguments.durationArgument("duration"),
                 arguments.intArgument("threshold")).parse();
     }

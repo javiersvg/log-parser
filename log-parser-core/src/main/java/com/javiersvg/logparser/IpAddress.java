@@ -1,4 +1,4 @@
-package com.javiersvg.mysqllogparser;
+package com.javiersvg.logparser;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
@@ -35,7 +35,7 @@ class IpAddress {
             preparedStatement.setString(4, reason);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new MySqlLogParserException("Unable to save blocked IP " + value, e);
+            throw new LogParserException("Unable to save blocked IP " + value, e);
         }
     }
 

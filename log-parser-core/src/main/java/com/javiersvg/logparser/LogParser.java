@@ -1,4 +1,4 @@
-package com.javiersvg.mysqllogparser;
+package com.javiersvg.logparser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class MySqlLogParser {
+public class LogParser {
     private static final String ERROR_PROPERTIES_FILE_KEY = "error.properties.file";
     private static final String ERROR_LOG_FILE_KEY = "error.log.file";
     private static final String CONFIG_PROPERTIES_KEY = "config.properties";
@@ -23,7 +23,7 @@ public class MySqlLogParser {
     private DataSourceFactory dataSourceFactory;
     private ResourceBundle resourceBundle = ResourceBundle.getBundle("messages");
 
-    public MySqlLogParser(LocalDateTime startDate, Duration duration, int threshold) {
+    public LogParser(LocalDateTime startDate, Duration duration, int threshold) {
         this.startDate = startDate;
         this.duration = duration;
         this.threshold = threshold;
@@ -32,12 +32,12 @@ public class MySqlLogParser {
             if (resource != null) {
                 properties.load(new InputStreamReader(resource));
             } else {
-                throw new MySqlLogParserException(resourceBundle.getString(ERROR_PROPERTIES_FILE_KEY));
+                throw new LogParserException(resourceBundle.getString(ERROR_PROPERTIES_FILE_KEY));
             }
         } catch (IOException e) {
-            throw new MySqlLogParserException(resourceBundle.getString(ERROR_PROPERTIES_FILE_KEY), e);
+            throw new LogParserException(resourceBundle.getString(ERROR_PROPERTIES_FILE_KEY), e);
         }
-        this.dataSourceFactory = new CacheablesDataSourceFactoryDecorator(new MySqlLogParserDataSourceFactory(properties));
+        this.dataSourceFactory = new CacheablesDataSourceFactoryDecorator(new ParserDataSourceFactory(properties));
     }
 
     public void parse() {
@@ -51,7 +51,7 @@ public class MySqlLogParser {
                     .filter(entry -> entry.getValue() > threshold)
                     .forEach(entry -> entry.getKey().block(startDate, duration, entry.getValue()));
         } catch (IOException e) {
-            throw new MySqlLogParserException(resourceBundle.getString(ERROR_LOG_FILE_KEY), e);
+            throw new LogParserException(resourceBundle.getString(ERROR_LOG_FILE_KEY), e);
         }
     }
 
@@ -60,7 +60,7 @@ public class MySqlLogParser {
         if (resource != null) {
             return new InputStreamReader(resource);
         } else {
-            throw new MySqlLogParserException(resourceBundle.getString(ERROR_PROPERTIES_FILE_KEY));
+            throw new LogParserException(resourceBundle.getString(ERROR_PROPERTIES_FILE_KEY));
         }
     }
 }

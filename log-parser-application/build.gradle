@@ -1,4 +1,4 @@
-group 'com.javiersvg.mysqllogparser'
+group 'com.javiersvg.logparser'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -11,8 +11,8 @@ repositories {
 }
 
 dependencies {
-    compile project(':mysql-log-parser-core')
+    compile project(':log-parser-core')
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-mainClassName = 'com.javiersvg.mysqllogparser.application.MySqlLogParserApplication'
+mainClassName = 'com.javiersvg.logparser.application.LogParserApplication'

@@ -1,4 +1,4 @@
-group 'com.javiersvg.mysqllogparser'
+group 'com.javiersvg.logparser'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'

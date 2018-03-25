@@ -1,4 +1,4 @@
-package com.javiersvg.mysqllogparser;
+package com.javiersvg.logparser;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
 import org.junit.Before;
@@ -13,7 +13,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
-public class MySqlLogParserDataSourceFactoryTest {
+public class LogParserDataSourceFactoryTest {
 
     @Mock
     private Properties properties;
@@ -27,7 +27,7 @@ public class MySqlLogParserDataSourceFactoryTest {
     public void dataSource() {
         when(properties.getProperty("dataSource")).thenReturn("com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource");
         when(properties.getProperty("dataSourceFactory")).thenReturn("com.mysql.jdbc.jdbc2.optional.MysqlDataSourceFactory");
-        DataSource dataSource = new MySqlLogParserDataSourceFactory(properties).dataSource();
+        DataSource dataSource = new ParserDataSourceFactory(properties).dataSource();
         assertThat(dataSource, is(MysqlConnectionPoolDataSource.class));
     }
 }

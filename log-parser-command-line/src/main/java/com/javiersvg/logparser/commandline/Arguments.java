@@ -1,6 +1,6 @@
-package com.javiersvg.mysqllogparser.commandline;
+package com.javiersvg.logparser.commandline;
 
-import com.javiersvg.mysqllogparser.MySqlLogParserException;
+import com.javiersvg.logparser.LogParserException;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -28,7 +28,7 @@ public class Arguments extends HashMap<String, Argument> {
         switch (value) {
             case "hourly": return Duration.ofHours(1);
             case "daily": return Duration.ofDays(1);
-            default: throw new MySqlLogParserException("Improper duration value");
+            default: throw new LogParserException("Improper duration value");
         }
     }
 
@@ -39,7 +39,7 @@ public class Arguments extends HashMap<String, Argument> {
     void validate(String... requiredArguments) {
         if (!isEveryArgumentPresent(requiredArguments)) {
             String message = String.format(resourceBundle.getString("error.arguments.required"),Arrays.asList(requiredArguments));
-            throw new MySqlLogParserException(message);
+            throw new LogParserException(message);
         }
     }
 

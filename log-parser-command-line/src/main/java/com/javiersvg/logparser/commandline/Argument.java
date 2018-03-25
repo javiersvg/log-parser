@@ -1,6 +1,6 @@
-package com.javiersvg.mysqllogparser.commandline;
+package com.javiersvg.logparser.commandline;
 
-import com.javiersvg.mysqllogparser.MySqlLogParserException;
+import com.javiersvg.logparser.LogParserException;
 
 import java.util.ResourceBundle;
 import java.util.function.Function;
@@ -22,7 +22,7 @@ public class Argument {
         if (matcher.find()) {
             return matcher.group(1);
         } else {
-            throw  new MySqlLogParserException(String.format(resourceBundle.getString(ERROR_ARGUMENT_FORMAT_KEY), value));
+            throw  new LogParserException(String.format(resourceBundle.getString(ERROR_ARGUMENT_FORMAT_KEY), value));
         }
     }
 
@@ -31,7 +31,7 @@ public class Argument {
         if (matcher.find()) {
             return function.apply(matcher.group(2));
         } else {
-            throw  new MySqlLogParserException(String.format(resourceBundle.getString(ERROR_ARGUMENT_FORMAT_KEY), value));
+            throw  new LogParserException(String.format(resourceBundle.getString(ERROR_ARGUMENT_FORMAT_KEY), value));
         }
     }
 }

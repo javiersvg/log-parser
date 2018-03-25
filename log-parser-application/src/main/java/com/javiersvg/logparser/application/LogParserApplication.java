@@ -1,7 +1,7 @@
-package com.javiersvg.mysqllogparser.application;
+package com.javiersvg.logparser.application;
 
-import com.javiersvg.mysqllogparser.MySqlLogParser;
-import com.javiersvg.mysqllogparser.MySqlLogParserException;
+import com.javiersvg.logparser.LogParser;
+import com.javiersvg.logparser.LogParserException;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -29,7 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-public class MySqlLogParserApplication extends Application {
+public class LogParserApplication extends Application {
     private ResourceBundle resourceBundle = ResourceBundle.getBundle("messages");
     private final FileChooser fileChooser = new FileChooser();
     private File file;
@@ -102,7 +102,7 @@ public class MySqlLogParserApplication extends Application {
                 @Override
                 protected Object call() {
                     LocalDateTime dateTime = LocalDateTime.of(startDate.getValue(), time.getValue());
-                    new MySqlLogParser(dateTime, duration.getValue().getDuration(), threshold.getValue()).parse();
+                    new LogParser(dateTime, duration.getValue().getDuration(), threshold.getValue()).parse();
                     return null;
                 }
             };
@@ -125,7 +125,7 @@ public class MySqlLogParserApplication extends Application {
         if (resource != null) {
             return resource.toExternalForm();
         } else {
-            throw new MySqlLogParserException(resourceBundle.getString("error.properties.file"));
+            throw new LogParserException(resourceBundle.getString("error.properties.file"));
         }
     }
 

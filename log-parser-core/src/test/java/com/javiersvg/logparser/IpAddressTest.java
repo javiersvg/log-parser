@@ -1,4 +1,4 @@
-package com.javiersvg.mysqllogparser;
+package com.javiersvg.logparser;
 
 import org.junit.Before;
 import org.junit.Test;

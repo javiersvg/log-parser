@@ -1,18 +1,15 @@
-package com.javiersvg.mysqllogparser;
+package com.javiersvg.logparser;
 
-import javax.naming.NamingException;
 import javax.naming.Reference;
 import javax.naming.StringRefAddr;
 import javax.naming.spi.NamingManager;
-import javax.naming.spi.ObjectFactory;
 import javax.sql.DataSource;
-import java.util.Hashtable;
 import java.util.Properties;
 
-class MySqlLogParserDataSourceFactory implements DataSourceFactory {
+class ParserDataSourceFactory implements DataSourceFactory {
     private Properties properties;
 
-    MySqlLogParserDataSourceFactory(Properties properties) {
+    ParserDataSourceFactory(Properties properties) {
         this.properties = properties;
     }
 
@@ -26,7 +23,7 @@ class MySqlLogParserDataSourceFactory implements DataSourceFactory {
             dbReference.add(new StringRefAddr("databaseName", properties.getProperty("databaseName")));
             return (DataSource) NamingManager.getObjectInstance(dbReference, null, null, null);
         } catch (Exception e) {
-            throw new MySqlLogParserException("Unable to load the properties file", e);
+            throw new LogParserException("Unable to load the properties file", e);
         }
     }
 }

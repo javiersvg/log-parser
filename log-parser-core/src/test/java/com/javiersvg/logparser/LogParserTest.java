@@ -1,4 +1,4 @@
-package com.javiersvg.mysqllogparser;
+package com.javiersvg.logparser;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-public class MySqlLogParserTest {
+public class LogParserTest {
     private LocalTime time = LocalTime.of(0,0,0);
     private LocalDate date = LocalDate.of(2017,1,1);
     private LocalDateTime dateTime = LocalDateTime.of(date, time);
@@ -31,7 +31,7 @@ public class MySqlLogParserTest {
     @Mock
     private Connection connection;
     @InjectMocks
-    private MySqlLogParser parser = new MySqlLogParser(dateTime, Duration.ofHours(1), 100);
+    private LogParser parser = new LogParser(dateTime, Duration.ofHours(1), 100);
 
     @Before
     public void setUp() throws SQLException {

@@ -1,4 +1,4 @@
-package com.javiersvg.mysqllogparser.application;
+package com.javiersvg.logparser.application;
 
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.util.converter.LocalTimeStringConverter;

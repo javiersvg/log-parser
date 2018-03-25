@@ -1,4 +1,4 @@
-package com.javiersvg.mysqllogparser;
+package com.javiersvg.logparser;
 
 import javax.sql.DataSource;
 import java.time.Duration;
@@ -27,7 +27,7 @@ class LogLine {
         if (matcher.find()) {
             return new IpAddress(matcher.group(2), dataSource);
         } else {
-            throw new MySqlLogParserException("No IP found in line: " + line);
+            throw new LogParserException("No IP found in line: " + line);
         }
     }
 
@@ -36,7 +36,7 @@ class LogLine {
         if (matcher.find()) {
             return LocalDateTime.parse(matcher.group(1).replace( " " , "T" ));
         } else {
-            throw new MySqlLogParserException("No date in line: " + line);
+            throw new LogParserException("No date in line: " + line);
         }
     }
 }
